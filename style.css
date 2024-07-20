@@ -1,6 +1,50 @@
+:root {
+    font-size: 16px;
+
+    --primaryColor1: #57f171;
+
+    --seocondaryColor1:#fff;
+    --secondaryColor1: #000;
+}
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
+body {
+    padding: 3.5rem 0 0;
+
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.header {
+    position: fixed;
+    top:0;
+    left: 0;
+    right: 0;
+}
+
+.box-shadow {
+    box-shadow: 0.1rem 0.1rem 0.5rem var(--secondaryColor1);
+}
+
+.header-text {
+    padding: 0.75rem;
+    font-size: 2rem;
+    text-align: center;
+    color: var(--primaryColor1);
+    background-color: var(--seocondaryColor1);
+}
+
+.footer {
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 1.15rem;
+    color: var(--primaryColor1);
+}  
+
+.footer-text {
+    text-align: center;
+}
