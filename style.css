@@ -119,7 +119,7 @@ body {
 }
 
 .add-container-button,
-.form button {
+.form .submit {
     cursor: pointer;
     border-radius: 0.25rem;
     border: none;
@@ -132,12 +132,18 @@ body {
 }
 
 .modal {
+    visibility: hidden;
     position: fixed;
     top: 0;
     bottom: 0;
     right: 0;
     left: 0;
     background-color: #000000be;
+}
+
+.modal.visible {
+    visibility: visible;
+    pointer-events: none;
 }
 
 .form {
@@ -157,7 +163,8 @@ body {
     text-align: center;
 }
 
-.form button {
+.form .submit {
+    width: fit-content;
     margin: 1rem auto;
 }
 

@@ -1,6 +1,30 @@
 let addContainerButton = document.querySelector('.add-container-button');
 addContainerButton.addEventListener("click", () => {
-    
+    toggleModal();
+});
+
+function toggleModal () {
+    let modal = document.querySelector('.modal');
+    if (modal.classList.contains("visible")) {
+        modal.className = 'modal';
+    }
+    else {
+        modal.className = 'modal visible';
+    }
+}
+
+let addButton = document.querySelector(".form .submit");
+addButton.addEventListener("click", (e) => {
+    let titleInput = document.querySelector("add-book-title");
+    let titleData = titleInput.value;
+    let pagesInput = document.querySelector("add-book-pages");
+    let pagesData = pagesInput.value;
+    let authorInput = document.querySelector("add-book-author");
+    let authorData = authorInput.value;
+    let statusInput = document.querySelector('add-book-status');
+    let statusData = statusInput.value;
+
+
 })
 
 const myLibrary = [];
