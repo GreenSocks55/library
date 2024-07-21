@@ -15,16 +15,23 @@ function toggleModal () {
 
 let addButton = document.querySelector(".form .submit");
 addButton.addEventListener("click", (e) => {
-    let titleInput = document.querySelector("add-book-title");
+    let titleInput = document.querySelector("#add-book-title");
     let titleData = titleInput.value;
-    let pagesInput = document.querySelector("add-book-pages");
+    let pagesInput = document.querySelector("#add-book-pages");
     let pagesData = pagesInput.value;
-    let authorInput = document.querySelector("add-book-author");
+    let authorInput = document.querySelector("#add-book-author");
     let authorData = authorInput.value;
-    let statusInput = document.querySelector('add-book-status');
+    let statusInput = document.querySelector('#add-book-status');
     let statusData = statusInput.value;
 
-
+    let book = new Book (titleData, pagesData, authorData, statusData);
+    addBookToLibrary(book);
+    clearLibrary();
+    clearInput();
+    for (let singleBook of myLibrary) {
+        render(singleBook);
+    }
+    toggleModal();
 })
 
 const myLibrary = [];
@@ -42,12 +49,14 @@ function addBookToLibrary (bookObject) {
 
 function render (bookObject) {
     let bookContainer = document.querySelector('.book-container');
+    let book = document.createElement('div');
+    book.className = `book`;
 
     let titleDiv = document.createElement('div');
     titleDiv.className = 'book-title';
     titleDiv.textContent = `Title: `
     let span1 = document.createElement('span');
-    span.textContent = `${bookObject.name}`;  
+    span1.textContent = `${bookObject.name}`;  
     titleDiv.appendChild(span1);
 
     let pagesDiv = document.createElement('div');
@@ -65,17 +74,17 @@ function render (bookObject) {
     authorDiv.appendChild(span3);
 
     let statusDiv = document.createElement('div');
-    if (bookObject.status == true) {
+    if (bookObject.status == 'true') {
         statusDiv.className = 'book-read';
         statusDiv.textContent = `COMPLETED`;
+        book.classList.add('completed');
     }
     else {
         statusDiv.className = 'book-unread';
-        statusDiv.textContent = `INCOMPLETE`
+        statusDiv.textContent = `INCOMPLETE`;
+        book.classList.add('incomplete');
     }
 
-    let book = document.createElement('div');
-    book.className = `book`;
     book.appendChild(titleDiv);
     book.appendChild(pagesDiv);
     book.appendChild(authorDiv);
@@ -84,7 +93,18 @@ function render (bookObject) {
     bookContainer.appendChild(book);
 } 
 
-function clear () {
+function clearLibrary () {
     let bookContainer = document.querySelector('.book-container');
     bookContainer.innerHTML = ``;
+}
+
+function clearInput () {
+    let titleInput = document.querySelector("#add-book-title");
+    titleInput.value = ``;
+    let pagesInput = document.querySelector("#add-book-pages");
+    pagesInput.value = ``;
+    let authorInput = document.querySelector("#add-book-author");
+    authorInput.value = ``;
+    let statusInput = document.querySelector('#add-book-status');
+    statusInput.value = `true`;
 }

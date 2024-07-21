@@ -91,7 +91,14 @@ body {
     padding: 1rem;
     justify-content: center;
     border-radius: 4px;
+}
+
+.book.completed {
     box-shadow: 0.25rem 0.25rem 0.25rem var(--primaryColor1);
+}
+
+.book.incomplete {
+    box-shadow: 0.25rem 0.25rem 0.25rem var(--secondaryColor3);
 }
 
 .book > div {
@@ -147,6 +154,7 @@ body {
 }
 
 .form {
+    pointer-events: all;
     width: min(400px, 60vw);
     position: absolute;
     top: 50%;
