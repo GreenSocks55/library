@@ -46,6 +46,15 @@ function Book (name, pages, author, status) {
     this.status = status;
 }
 
+Book.prototype.changeStatus = function () {
+    if (this.status == 'true') {
+        this.status = 'false';
+    }
+    else {
+        this.status = 'true';
+    }
+}
+
 function addBookToLibrary (bookObject) {
     myLibrary.push(bookObject);
     libraryLength++;
@@ -107,6 +116,15 @@ function render (bookObject) {
         statusDiv.textContent = `INCOMPLETE`;
         book.classList.add('incomplete');
     }
+    statusDiv.addEventListener("click", (e) => {
+        changeSelf(e);
+        clearLibrary();
+        libraryLength = 0;
+        for (let singleBook of myLibrary) {
+            render(singleBook);
+            libraryLength++; 
+        }
+    })
 
     book.appendChild(deleteDiv);
     book.appendChild(titleDiv);
@@ -136,4 +154,9 @@ function clearInput () {
 function deleteSelf (e) {
     let index = e.target.parentElement.dataset.index;
     removeBookFromLibrary(index);
+}
+
+function changeSelf (e) {
+    let index = e.target.parentElement.dataset.index;
+    myLibrary[index].changeStatus();
 }
