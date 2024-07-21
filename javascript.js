@@ -1,3 +1,4 @@
+let libraryLength = 0;
 let addContainerButton = document.querySelector('.add-container-button');
 addContainerButton.addEventListener("click", () => {
     toggleModal();
@@ -28,8 +29,10 @@ addButton.addEventListener("click", (e) => {
     addBookToLibrary(book);
     clearLibrary();
     clearInput();
+    libraryLength = 0;
     for (let singleBook of myLibrary) {
         render(singleBook);
+        libraryLength++;
     }
     toggleModal();
 })
@@ -45,12 +48,32 @@ function Book (name, pages, author, status) {
 
 function addBookToLibrary (bookObject) {
     myLibrary.push(bookObject);
+    libraryLength++;
+}
+
+function removeBookFromLibrary (index) {
+    myLibrary.splice(index, 1);
 }
 
 function render (bookObject) {
     let bookContainer = document.querySelector('.book-container');
     let book = document.createElement('div');
     book.className = `book`;
+
+    book.dataset.index = libraryLength;
+
+    let deleteDiv = document.createElement('div');
+    deleteDiv.className = `delete-container`;
+    deleteDiv.textContent = 'X';
+    deleteDiv.addEventListener("click", (e) => {
+        deleteSelf(e);
+        clearLibrary();
+        libraryLength = 0;
+        for (let singleBook of myLibrary) {
+            render(singleBook);
+            libraryLength++;
+        }
+    })
 
     let titleDiv = document.createElement('div');
     titleDiv.className = 'book-title';
@@ -85,6 +108,7 @@ function render (bookObject) {
         book.classList.add('incomplete');
     }
 
+    book.appendChild(deleteDiv);
     book.appendChild(titleDiv);
     book.appendChild(pagesDiv);
     book.appendChild(authorDiv);
@@ -107,4 +131,9 @@ function clearInput () {
     authorInput.value = ``;
     let statusInput = document.querySelector('#add-book-status');
     statusInput.value = `true`;
+}
+
+function deleteSelf (e) {
+    let index = e.target.parentElement.dataset.index;
+    removeBookFromLibrary(index);
 }

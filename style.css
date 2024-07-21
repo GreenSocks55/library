@@ -80,6 +80,8 @@ body {
 }
 
 .book {
+    position: relative;
+
     border-top: 0.25rem solid black;
     border-left: 0.25rem solid black;
     height: min(400px, 30vh);
@@ -99,6 +101,16 @@ body {
 
 .book.incomplete {
     box-shadow: 0.25rem 0.25rem 0.25rem var(--secondaryColor3);
+}
+
+.delete-container {
+    cursor: pointer;
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-weight: bolder;
+    font-size: 1.15rem;
+    color: var(--secondaryColor3);
 }
 
 .book > div {
