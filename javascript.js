@@ -39,19 +39,21 @@ addButton.addEventListener("click", (e) => {
 
 const myLibrary = [];
 
-function Book (name, pages, author, status) {
-    this.name = name;
-    this.pages = pages;
-    this.author = author;
-    this.status = status;
-}
-
-Book.prototype.changeStatus = function () {
-    if (this.status == 'true') {
-        this.status = 'false';
+class Book {
+    constructor (name, pages, author, status) {
+        this.name = name;
+        this.pages = pages;
+        this.author = author;
+        this.status = status;
     }
-    else {
-        this.status = 'true';
+
+    changeStatus() {
+            if (this.status == 'true') {
+                this.status = 'false';
+            }
+            else {
+                this.status = 'true';
+            }
     }
 }
 
